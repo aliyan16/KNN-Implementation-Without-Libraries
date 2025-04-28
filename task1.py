@@ -60,13 +60,20 @@ def getResponse(knnFeatures,knnLabels):
     mostOccuring=[]
     CounterOccuring=[]
     for i in range(trainDistances):
-        count=0
         for j in range(neighbors):
+            count=0
             clabel=knnLabels[i][j]
             for k in range(neighbors-1):
-                if knnLabels[i][j+k]==clabel:
+                if clabel in mostOccuring:
+                    
+                if knnLabels[i][(j+k)%neighbors]==clabel:
                     count+=1
-                    mostOccuring.append(knnLabels)
+                if clabel not in mostOccuring:
+                    mostOccuring.append(clabel)
+            
+            CounterOccuring.append(count)
+            
+                       
             
 
     return
